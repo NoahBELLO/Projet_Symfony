@@ -8,6 +8,23 @@
 	<section class="text-teal-100 bg-slate-800 body-font container px-5 py-14 mx-auto">
 		<div class="container px-5 py-12 mx-auto">
 			<h1 class="text-3xl font-semibold mb-8 text-teal-300 text-center">Offres d'emploi disponibles</h1>
+			<form method="get" action="{{ path('app_job_list') }}" class="mb-6 flex gap-4 justify-center">
+				<select name="country" class="px-3 py-2 rounded bg-slate-700 text-teal-300">
+					<option value="">Tous les pays</option>
+					{% for country in countries %}
+						<option value="{{ country }}" {% if selectedCountry == country %} selected {% endif %}>{{ country }}</option>
+					{% endfor %}
+				</select>
+
+				<select name="category" class="px-3 py-2 rounded bg-slate-700 text-teal-300">
+					<option value="">Toutes les catégories</option>
+					{% for category in categories %}
+						<option value="{{ category.id }}" {% if selectedCategory == category.id %} selected {% endif %}>{{ category.name }}</option>
+					{% endfor %}
+				</select>
+
+				<button type="submit" class="bg-teal-400 px-4 py-2 rounded text-slate-900 font-semibold hover:bg-teal-600 transition">Filtrer</button>
+			</form>
 			<div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
 				{% for job in jobs %}
 					{% include 'job/_job_item.html.twig' with {'job': job} %}
