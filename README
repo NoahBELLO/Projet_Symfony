@@ -1,0 +1,80 @@
+# Dans le fichier php.ini
+# décommenter la ligne zend_extension=opcache
+
+# rajouter ceci à la fin du fichier:
+# [xDebug]
+# zend_extension = C:\xampp\php\ext\php_xdebug.dll
+# xdebug.remote_enable = 1
+# xdebug.remote_autostart = On
+
+#ajouter le fichier xdebug.dll
+
+#installer le composer:
+# php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+# php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
+# php composer-setup.php
+# php -r "unlink('composer-setup.php');"
+
+# Installer scoop:
+
+# Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+# Invoke-RestMethod -Uri https://get.scoop.sh/ | Invoke-Expression
+
+# puis:
+# scoop install symfony-cli  
+
+# verifier les pré-requis techniques :
+# symfony check:requirement
+
+#créer un projet symfony:
+# symfony new projet_blog --version="6.4.*" --webapp
+
+#lancer le serveur:
+#symfony server:start
+
+#créer un controller:
+# symfony console make:controller BlogController
+
+#créer une entité ou ajouter des propriétés:
+# symfony console make:entity
+
+#################################################
+### Problème de synchronisation de metadata #####
+#################################################
+
+# drop la db avec l'ancienne URI
+# php bin/console doctrine:database:drop --force
+# change l'uri et met les bonnes infos de la db dans le .env.local
+# rentre ceci
+# php bin/console doctrine:database:create 
+# migration:
+# php bin/console make:migration
+# applique la migration:
+# php bin/console doctrine:migrations:migrate
+
+#################################################
+
+
+#sélectionner les instruction de création de la table
+#symfony console make:migration
+
+#lance l'instruction de lancer les création de toutes les tables
+#symfony console doctrine:migrations:migrate
+
+#on créer un second controller
+#symfony console make:controller PostController
+
+#ajouter le bundle easy admin:
+#composer require easycorp/easyadmin-bundle
+
+# clear le cache:
+# symfony console cache:clear
+
+#créer le dashboard pour admin
+#symfony console make:admin:dashboard
+
+#créer la fenêtre de login
+#symfony console make:security:form-login
+
+#décommenter la ligne de login dans le fichier security.yaml
+#  - { path: ^/admin, roles: ROLE_ADMIN }

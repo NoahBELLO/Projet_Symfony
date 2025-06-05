@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Présentation de l'entreprise{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-700 text-white py-10 px-6">
+    <div class="max-w-3xl mx-auto bg-white text-slate-800 rounded-xl shadow-lg p-8">
+        <h1 class="text-3xl font-bold text-teal-600 mb-6">
+            {{ compagny.name }}
+        </h1>
+        
+        <div class="space-y-4">
+            <p><span class="font-semibold text-teal-600">Description :</span><br>
+            {{ compagny.description }}</p>
+
+            <p><span class="font-semibold text-teal-600">Adresse :</span><br>
+            {{ compagny.address }}</p>
+
+            <p><span class="font-semibold text-teal-600">Ville :</span>
+            {{ compagny.city }}</p>
+
+            <p><span class="font-semibold text-teal-600">Pays :</span>
+            {{ compagny.country }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
