@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des jobs
+{% endblock %}
+
+{% block body %}
+	<section class="text-teal-100 bg-slate-800 body-font container px-5 py-14 mx-auto">
+		<div class="container px-5 py-24 mx-auto">
+			<h1 class="text-4xl font-semibold text-teal-300 mb-10 border-b border-teal-600 pb-4">
+				Pays :
+				{{ country }}
+			</h1>
+
+			<div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+				{% set jobs_in_country = jobs|filter(job => job.country == country) %}
+
+				{% for job in jobs_in_country %}
+					{% include "job/_job_item.html.twig" %}
+				{% else %}
+					<p class="text-slate-300">Aucun job trouvé dans ce pays.</p>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+{% endblock %}

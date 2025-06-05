@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{ job.title }}
+{% endblock %}
+
+{% block body %}
+	<section class="text-teal-100 bg-slate-800 body-font">
+		<div class="container px-5 py-24 mx-auto flex flex-wrap">
+			<div class="flex flex-wrap -mx-4 lg:w-1/2 sm:w-2/3 content-between mt-8 sm:mt-0">
+				<div class="w-full sm:p-4 px-4 mb-6">
+					<h1 class="text-3xl font-semibold text-teal-300 mb-4">{{ job.title }}</h1>
+					<div class="text-slate-100 leading-relaxed text-base">
+						{{ job.description|raw }}
+					</div>
+				</div>
+
+				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+					<h2 class="text-2xl font-bold text-indigo-400">{{ job.compagny.name }}</h2>
+					<p class="text-slate-300">Compagnie</p>
+				</div>
+
+				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+					<h2 class="text-2xl font-bold text-indigo-400">{{ job.jobType.name }}</h2>
+					<p class="text-slate-300">Type de contrat</p>
+				</div>
+
+				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">					
+					<a href="{{ path('app_country_show', {'country': job.country }) }}"><h2 class="text-2xl font-bold text-indigo-400">{{ job.country }}</h2></a>
+					<p class="text-slate-300">Pays</p>
+				</div>
+				
+				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+					<h2 class="text-2xl font-bold text-indigo-400">{{ job.salaryMin  }}€-{{ job.salaryMax  }}€</h2>
+					<p class="text-slate-300">Salaire</p>
+				</div>
+
+				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+					{% if job.remoteAllowed %}
+						<h2 class="text-2xl font-bold text-indigo-400">Oui</h2>
+					{% else %}
+						<h2 class="text-2xl font-bold text-red-400">Non</h2>
+					{% endif %}
+					<p class="text-slate-300">Télétravail</p>
+				</div>
+
+				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+					<h2 class="text-2xl font-bold text-indigo-400">{{ job.releaseDate|date('d/m/Y') }}</h2>
+					<p class="text-slate-300">Date de publication</p>
+				</div>
+
+				<div class="p-4 w-full">
+					<h2 class="text-xl font-medium text-teal-200 pb-2">Catégories</h2>
+					{% for categorie in job.jobCategories %}
+						<a class="inline-block bg-slate-700 text-teal-300 text-xs font-semibold mr-2 mb-2 px-3 py-1 rounded-full hover:bg-teal-600 hover:text-white transition-all" href="{{ path('app_categorie_show', {'id': categorie.id }) }}">{{ categorie.name }}</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Listes des jobs
+{% endblock %}
+
+{% block body %}
+	<section class="text-teal-100 bg-slate-800 body-font container px-5 py-14 mx-auto">
+		<div class="container px-5 py-12 mx-auto">
+			<h1 class="text-3xl font-semibold mb-8 text-teal-300 text-center">Offres d'emploi disponibles</h1>
+			<div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+				{% for job in jobs %}
+					{% include 'job/_job_item.html.twig' with {'job': job} %}
+				{% else %}
+					<p class="text-center w-full text-teal-200 text-lg">Aucune offre disponible pour le moment.</p>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+{% endblock %}

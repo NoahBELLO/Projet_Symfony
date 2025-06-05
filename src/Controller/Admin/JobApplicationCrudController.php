@@ -23,8 +23,8 @@ class JobApplicationCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            AssociationField::new('job_id'),
-            AssociationField::new('user_id'),
+            AssociationField::new('job'),
+            AssociationField::new('user'),
             TextEditorField::new('cover_letter'),
             DateTimeField::new('created_at'),
         ];

@@ -31,8 +31,8 @@ class JobCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            AssociationField::new('compagny_id'),
-            AssociationField::new('job_type_id'),
+            AssociationField::new('compagny')->autocomplete(),
+            AssociationField::new('jobType')->autocomplete(),
             TextField::new('title'),
             TextEditorField::new('description'),
             ChoiceField::new('country')

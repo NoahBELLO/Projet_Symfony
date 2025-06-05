@@ -51,6 +51,9 @@ class Job
     #[ORM\ManyToMany(targetEntity: JobCategorie::class, mappedBy: 'job')]
     private Collection $jobCategories;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $releaseDate = null;
+
     public function __construct()
     {
         $this->jobApplications = new ArrayCollection();
@@ -211,6 +214,18 @@ class Job
         if ($this->jobCategories->removeElement($jobCategory)) {
             $jobCategory->removeJob($this);
         }
+
+        return $this;
+    }
+
+    public function getReleaseDate(): ?\DateTimeImmutable
+    {
+        return $this->releaseDate;
+    }
+
+    public function setReleaseDate(?\DateTimeImmutable $releaseDate): static
+    {
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
