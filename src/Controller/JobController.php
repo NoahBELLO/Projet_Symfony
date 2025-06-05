@@ -6,7 +6,6 @@ use App\Entity\Job;
 use App\Repository\JobCategorieRepository;
 use App\Repository\JobRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
