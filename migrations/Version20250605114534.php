@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250605083504 extends AbstractMigration
+final class Version20250605114534 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -24,7 +24,7 @@ final class Version20250605083504 extends AbstractMigration
             CREATE TABLE compagny (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, address VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, country VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
-            CREATE TABLE job (id INT AUTO_INCREMENT NOT NULL, compagny_id INT DEFAULT NULL, job_type_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, country VARCHAR(255) NOT NULL, remote_allowed TINYINT(1) NOT NULL, salary_min DOUBLE PRECISION NOT NULL, salary_max DOUBLE PRECISION NOT NULL, INDEX IDX_FBD8E0F81224ABE0 (compagny_id), INDEX IDX_FBD8E0F85FA33B08 (job_type_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+            CREATE TABLE job (id INT AUTO_INCREMENT NOT NULL, compagny_id INT DEFAULT NULL, job_type_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, country VARCHAR(255) NOT NULL, remote_allowed TINYINT(1) NOT NULL, salary_min DOUBLE PRECISION NOT NULL, salary_max DOUBLE PRECISION NOT NULL, release_date DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', INDEX IDX_FBD8E0F81224ABE0 (compagny_id), INDEX IDX_FBD8E0F85FA33B08 (job_type_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
             CREATE TABLE job_application (id INT AUTO_INCREMENT NOT NULL, job_id INT DEFAULT NULL, user_id INT DEFAULT NULL, cover_letter LONGTEXT NOT NULL, created_at DATETIME NOT NULL COMMENT '(DC2Type:datetime_immutable)', INDEX IDX_C737C688BE04EA9 (job_id), INDEX IDX_C737C688A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
