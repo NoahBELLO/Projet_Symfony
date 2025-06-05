@@ -25,11 +25,13 @@
 					<p class="text-slate-300">Type de contrat</p>
 				</div>
 
-				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">					
-					<a href="{{ path('app_country_show', {'country': job.country }) }}"><h2 class="text-2xl font-bold text-indigo-400">{{ job.country }}</h2></a>
+				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+					<a href="{{ path('app_country_show', {'country': job.country }) }}">
+						<h2 class="text-2xl font-bold text-indigo-400">{{ job.country }}</h2>
+					</a>
 					<p class="text-slate-300">Pays</p>
 				</div>
-				
+
 				<div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
 					<h2 class="text-2xl font-bold text-indigo-400">{{ job.salaryMin  }}€-{{ job.salaryMax  }}€</h2>
 					<p class="text-slate-300">Salaire</p>
@@ -58,4 +60,13 @@
 			</div>
 		</div>
 	</section>
+
+	{% if app.user %}
+		<turbo-frame id="jobApplication-form" src="{{ path('app_job_application_form', { id: job.id }) }}">
+			Chargement du formulaire...
+		</turbo-frame>
+	{% else %}
+		<p>Se connecter pour postuler à ce job</p>
+	{% endif %}
+
 {% endblock %}
