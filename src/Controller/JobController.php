@@ -22,14 +22,20 @@ final class JobController extends AbstractController
     }
 
     #[Route('/job/list', name: 'app_job_list')]
-    public function list(JobRepository $jobRepository, PaginatorInterface $paginator, Request $request): Response
+public function list(Request $request, JobRepository $jobRepository,PaginatorInterface $paginator,  JobCategorieRepository $categorieRepository): Response
     {
-        $query = $jobRepository->findAll();
+        $country = $request->query->get('country');
+        $categoryId = $request->query->get('category');
+        $categoryId = $categoryId !== null && $categoryId !== '' ? (int) $categoryId : null;
+
+        $jobs = $jobRepository->findByFilters($country, $categoryId);
+        $categories = $categorieRepository->findAll();
+        $countries = $this->getCountryNamesOnly();
 
         $jobs = $paginator->paginate(
-            $query,
+            $jobs,
             $request->query->getInt('page', 1), // Page actuelle, défaut 1
-            2 // Jobs par page
+            10 // Jobs par page
         );
 
         return $this->render('job/list.html.twig', [
@@ -40,6 +46,7 @@ final class JobController extends AbstractController
             'countries' => $countries,
         ]);
     }
+    
 
     #[Route('/job/{id}', name: 'app_job_show')]
     public function show(Job $job): Response
