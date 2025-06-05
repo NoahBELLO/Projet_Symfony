@@ -25,4 +25,14 @@
 			</div>
 		</div>
 	</section>
+
+	<section class="text-teal-600 bg-slate-700 body-font">
+		<div class="container px-5 py-24 mx-auto">
+			<div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+				{% for job in jobs %}
+					{% include 'job/_job_item.html.twig' with {'job': job} %}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
 {% endblock %}
