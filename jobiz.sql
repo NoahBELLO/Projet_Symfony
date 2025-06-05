@@ -26,12 +26,12 @@ INSERT INTO user (id, username, roles, password) VALUES
 (3, 'carol', '["ROLE_USER"]', 'password');
 
 -- Insert jobs
-INSERT INTO job (id, compagny_id, job_type_id, title, description, country, remote_allowed, salary_min, salary_max) VALUES
-(1, 1, 1, 'Développeur PHP', 'Travailler sur des projets Symfony.', 'France', 1, 32000, 40000),
-(2, 2, 2, 'Chef de projet marketing', 'Gérer les campagnes publicitaires.', 'France', 0, 30000, 37000),
-(3, 1, 4, 'Stagiaire développeur web', 'Apprendre à coder avec Symfony.', 'France', 1, 10000, 12000),
-(4, 3, 3, 'Designer UX Freelance', 'Mission de 3 mois sur une app mobile.', 'France', 1, 35000, 45000),
-(5, 2, 1, 'Data Analyst', 'Analyse de données et reporting.', 'France', 0, 38000, 48000);
+INSERT INTO job (id, compagny_id, job_type_id, title, description, country, remote_allowed, salary_min, salary_max, release_date) VALUES
+(1, 1, 1, 'Développeur PHP', 'Travailler sur des projets Symfony.', 'France', 1, 32000, 40000, '2025-06-01 09:00:00'),
+(2, 2, 2, 'Chef de projet marketing', 'Gérer les campagnes publicitaires.', 'France', 0, 30000, 37000, '2025-06-02 10:30:00'),
+(3, 1, 4, 'Stagiaire développeur web', 'Apprendre à coder avec Symfony.', 'France', 1, 10000, 12000, '2025-06-03 14:00:00'),
+(4, 3, 3, 'Designer UX Freelance', 'Mission de 3 mois sur une app mobile.', 'France', 1, 35000, 45000, '2025-06-04 11:15:00'),
+(5, 2, 1, 'Data Analyst', 'Analyse de données et reporting.', 'France', 0, 38000, 48000, '2025-06-05 08:45:00');
 
 -- Insert liaisons job-categorie
 INSERT INTO job_categorie_job (job_categorie_id, job_id) VALUES

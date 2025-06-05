@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Job;
 use App\Repository\JobRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,9 +13,16 @@ use Symfony\Component\Routing\Attribute\Route;
 final class JobController extends AbstractController
 {
     #[Route('/job/list', name: 'app_job_list')]
-    public function list(JobRepository $jobRepository): Response
+    public function list(JobRepository $jobRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $jobs = $jobRepository->findAll();
+        $query = $jobRepository->findAll();
+
+        $jobs = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1), // Page actuelle, défaut 1
+            2 // Jobs par page
+        );
+
         return $this->render('job/list.html.twig', [
             'jobs' => $jobs,
         ]);
